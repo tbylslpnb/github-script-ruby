@@ -9,7 +9,7 @@ module GitHub
         end
 
         def set_output(name, value)
-          puts make_output('set-output', name, value)
+          File.open(ENV['GITHUB_OUTPUT'], 'a') {|fd| fd.puts("#{name}=#{escape_property(value)}")}
         end
 
         def debug(message)
